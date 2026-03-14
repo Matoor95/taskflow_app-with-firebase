@@ -3,7 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService{
   final FirebaseAuth _auth=FirebaseAuth.instance;
-  // final GoogleSignIn  _googleSignIn= GoogleSignIn();
+final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
 
   // steam de connexion
 Stream<User?> get authStateChange => _auth.authStateChanges();
@@ -50,6 +50,18 @@ Future <String?> login ({
     print(e.code);
   }
 }
+// Mot de passe oublie 
+
+Future <String?> SemndPassswordResed(String email) async{
+  try{
+    await _auth.sendPasswordResetEmail(email: email.trim());
+    return null;
+  }
+  on FirebaseAuthException catch (e){
+    print (e.code);
+  }
+}
+
 
 // deconnexion 
 Future <void> logout() async{
