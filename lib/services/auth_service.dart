@@ -52,7 +52,7 @@ Future <String?> login ({
 }
 // Mot de passe oublie 
 
-Future <String?> SemndPassswordResed(String email) async{
+Future <String?> SendPassswordResed(String email) async{
   try{
     await _auth.sendPasswordResetEmail(email: email.trim());
     return null;
